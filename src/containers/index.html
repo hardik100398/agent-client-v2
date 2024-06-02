@@ -1,0 +1,25 @@
+<script>
+    let socket;
+    function connectWebSocket() {
+        socket = new WebSocket("ws://localhost:8000/ws");
+        socket.onmessage = function(event) {
+            const iframe = document.getElementById("iframeContent");
+            iframe.srcdoc = event.data;
+        };
+    }
+
+    async function sendPrompt(prompt) {
+        const response = await fetch('/prompt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'prompt=' + encodeURIComponent(prompt)
+        });
+    }
+
+    window.onload = connectWebSocket;
+    function startTask() {
+        sendPrompt("TASK: Go to the Amazon website and search for a laptop, filter for laptops with more than 4 stars, select the first and put it in the cart. 1. Go to the website https://www.amazon.com using the \'read_url\'. 2. Search for \'laptop\' using the \'input_text\'. 3. Click on the more than 4 stars filter using the \'click_element\'. 4. Click on the first product using the \'click_element\'. 5. Add the item to the cart by clicking on the \'Add to Cart\' button using the \'click_element\'. Write \'TERMINATE\' to end the conversation.");
+    }
+</script>

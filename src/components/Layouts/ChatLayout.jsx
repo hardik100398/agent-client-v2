@@ -4,7 +4,7 @@ import ChatIframe from "../Iframe/ChatIframe";
 
 function ChatLayout() {
   return (
-    <div className="w-full flex-row flex gap-10 justify-center">
+    <div className="w-full flex-row flex justify-center">
       <div className="w-1/5 max-h-screen border-red-500 border-solid border">
         {/* //form */}
         <ChatForm></ChatForm>

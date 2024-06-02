@@ -36,7 +36,11 @@ function ChatIframe({ iframe }) {
       </div>
     );
   }
-  return <div>ChatIframe</div>;
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen max-h-screen">
+      <iframe src={iframe}></iframe>
+    </div>
+  );
 }
 
 const StepCard = ({ idx, text }) => {
